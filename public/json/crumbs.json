@@ -1,0 +1,49 @@
+{
+    "crumbs" : [
+        {
+            "id": 0,
+            "name": "Forside",
+            "url": "http://localhost:3000/"
+        },
+        {
+            "id": 1,
+            "name": "Biler",
+            "url": "http://localhost:3000/cars"
+        },
+        {
+            "id": 2,
+            "name": "Både",
+            "url": "http://localhost:3000/boats"
+        },
+        {
+            "id": 3,
+            "name": "Bike's",
+            "url": "http://localhost:3000/bikes"
+        },
+        {
+            "id": 4,
+            "name": "Arkiv",
+            "url": "http://localhost:3000/archive"
+        },
+        {
+            "id": 5,
+            "name": "Kontakt",
+            "url": "http://localhost:3000/contact"
+        },
+        {
+            "id": 6,
+            "name": "Redaktionen",
+            "url": "http://localhost:3000/editorial"
+        },
+        {
+            "id": 7,
+            "name": "Admin",
+            "url": "http://localhost:3000/admin"
+        },
+        {
+            "id": 8,
+            "name": "Login",
+            "url": "http://localhost:3000/login"
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+footer div {
+    background-color: rgba(53,53,53,1);
+}
+
+footer h3, footer p {
+    color: rgba(240,240,240,1);
+}
+
+footer button {
+    background-color: rgba(230,230,230,1);
+    color: rgba(119,119,119,1);
+    padding: 10px;
+    margin-right: 10px;
+}
+
+footer button:hover {
+    background-color: rgba(128,28,28,1);
+    color: rgba(240,240,240,1);
+}
+
+.pagination_a {
+    text-decoration: none;
+    color: rgba(119,119,119,1);
+    background-color: rgba(190,190,190,1);
+    padding: 10px 20px 10px 20px;
+    margin: 5px;
+}
+
+.active_pagination_a {
+    background-color: rgba(255,192,0,1);
+}
+
+.comment_heading {
+    width: 100%;
+    border-bottom: 5px solid black;
+}
+
+.big_comment_icon {
+    font-size: 600%;
+}

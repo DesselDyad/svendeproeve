@@ -1,0 +1,24 @@
+.ad_prices_tbl {
+    width: 100%;
+    margin: 20px;
+}
+
+.ad_prices_tbl thead tr {
+    border-bottom: 4px solid rgba(119,119,119,1);
+}
+
+.ad_prices_tbl tbody tr:not(:last-of-type) {
+    border-bottom: 2px solid rgba(119,119,119,0.5);
+}
+
+.ad_prices_tbl tbody tr {
+    text-align: right;
+}
+
+.ad_prices_tbl tbody tr td {
+    padding: 10px;
+}
+
+.sponsor_top {
+    margin-bottom: 10px;
+}

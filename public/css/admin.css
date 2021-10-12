@@ -1,0 +1,139 @@
+.admin_submit_btn,
+.admin_btn {
+    padding: 5px 30px 5px 30px;
+    margin: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: rgba(119,119,119,1);
+    background-color: rgba(230,230,230,1);
+}
+
+.admin_submit_btn:hover,
+.admin_btn:hover {
+    color: rgba(240,240,240,1);
+    background-color: rgba(128,28,28,1);
+}
+
+.btn_clicked {
+    color: rgba(240,240,240,1);
+    background-color: rgba(128,28,28,1);
+}
+
+.btn_div button, .admin_overview_container button {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+
+.overview_h1 {
+    margin-bottom: 30px;
+}
+
+.overview_h1 a {
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    color: rgba(128,28,28,1);
+    background-color: rgba(230,230,230,1);
+}
+
+.overview_h1 a:hover {
+    color: rgba(230,230,230,1);
+    background-color: rgba(128,28,28,1);
+}
+
+.admin_delete_btn {
+    height: 125%;
+    margin: 5px;
+    padding: 5px;
+    background-color: #FF0000;
+}
+
+.admin_edit_btn {
+    height: 150%;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(29, 238, 238);
+}
+
+.admin_delete_btn:hover {
+    background-color: rgba(128,28,28,1);
+}
+
+.admin_edit_btn:hover {
+    background-color: rgba(9,138,138)
+}
+
+.admin_article_select {
+    padding: 5px 10px 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: rgba(119,119,119,1);
+    background-color: rgba(230,230,230,1);
+}
+.admin_article_select:hover {
+    color: rgba(128,28,28,1);
+}
+
+.admin_articles_tbl {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 5px solid black;
+}
+
+.ad_tbl td,
+.admin_articles_tbl td {
+    text-align: center;
+    font-weight: bold;
+}
+
+.admin_articles_tbl a {
+    text-decoration: none;
+    color: rgba(53,53,53,1);
+    padding: 5px;
+    font-weight: bold;
+}
+.admin_articles_tbl a:hover {
+    text-decoration: none;
+    color: rgba(128,28,28,1);
+}
+
+.admin_overview_container table {
+    width: 100%;
+}
+
+.big_h2 {
+    font-size: 325%;
+}
+
+
+.overview_h1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 25px;
+    margin: 25px;
+}
+
+.overview_h1 a {
+    height: 75px;
+}
+
+.logout_btn {
+    background-color: rgba(128,28,28,1)!important;
+    color: rgba(240,240,240,1)!important;
+    text-align: center;
+    padding: 25px 10px 15px 10px!important;
+    border-radius: 10px;
+}
+.logout_btn:hover {
+    background-color: rgba(158,58,58,1)!important;
+}
+
+.ad_tbl img,
+.editor_tbl img {
+    padding: 10px;
+}
+
+.admin_overview_container td {
+    padding: 5px;
+}

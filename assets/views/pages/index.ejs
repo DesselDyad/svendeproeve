@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<% include ../partials/head %>
+    <body>
+        <% include ../partials/header %>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <% include ../partials/crumbs %>
+                        </div>
+                        <div class="top_div col-lg-12"></div>
+                        <div class="col-lg-12">
+                            <!-- feedback mechanism -->
+                            <% include ../partials/locals_errors %>
+                            <% include ../partials/form_errors %>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="row">
+                                </div class="col-xs-12">
+                                    <h1 class="page_title">
+                                        SENESTE ARTIKLER
+                                    </h1>
+                                </div>
+                                <!-- for each article -->
+                                <% articles.forEach(article => { %>
+                                    <div class="col-xs-12 col-md-6">
+                                        <h2>
+                                            <!-- title shortening -->
+                                            <% if(article.title.length >= 28) { %>
+                                                <%= article.title.substring(0, 28) + '...' %>
+                                            <% } else { %>
+                                                <%= article.title %>
+                                            <% } %>
+                                        </h2>
+                                        <p>
+                                            <!-- written, comments, views -->
+                                            <span class="glyphicon glyphicon-time">
+                                                <%= article.written %>
+                                            </span>
+                                            <span class="glyphicon glyphicon-comment">
+                                                <%= article.comments.length %> Kommentarer
+                                            </span>
+                                            <span class="glyphicon glyphicon-eye-open">
+                                                <%= article.viewCount %> Visninger
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span class="lineHeight">
+                                                <!-- article opening & shorting -->
+                                                <% if(typeof article.content.opening != 'undefined') { %>
+                                                    <% if(article.content.opening) { %>
+                                                        <% if(article.content.opening[0].length >= 200) { %>
+                                                            <%= article.content.opening[0].substring(0,200) + '...' %>
+                                                        <% } else { %>
+                                                            <%= article.content.opening[0] %>
+                                                        <% } %>
+                                                    <% } %>
+                                                <% } %>
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <!-- link to general category -->
+                                            <a href=<%= '/' + article.category.query_name %> title="<%= '/' + article.category.query_name %>">
+                                                <span class="glyphicon glyphicon-tag">
+                                                    <%= article.category.editor_name %>
+                                                </span>
+                                            </a>
+                                        </p>
+                                        <p>
+                                            <!-- link to single article -->
+                                            <a href=<%= '/' + article.category.query_name + '/getSingle/' + article._id %> title=<%= article._id %> class="article_read_more">
+                                                Læs Mere
+                                            </a>
+                                        </p>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <% include ../partials/sidebar %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /container -->
+        <% include ../partials/footer %>
+    </body>
+</html>

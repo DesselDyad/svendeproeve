@@ -1,0 +1,41 @@
+<div class="sidebar">
+    <div class="form_div">
+        <form class="search_form" method="post" action="/search">
+            <div class="form-group">
+                <input class="form-control" type="text" id="search" name="search" required>
+                <button type="submit">
+                    <span class="glyphicon glyphicon-search">
+
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="sidebar_articles">
+        <h2 class="sidebar_title">
+            MEST LÆSTE
+        </h2>
+        <ul>
+            <% sidebar.sidebar_articles.forEach(article => { %>
+                <li>
+                    <a href=<%= '/' + article.category.query_name + '/getSingle/' + article._id %> title=<%= '/' + article.category.query_name + '/' + article._id %> >
+                        <%= article.title %>
+                    </a>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+    <div>
+        <h2 class="sidebar_title">
+            SPONSOR
+        </h2>
+        <% sidebar.advertisements.forEach(advertisement => { %>
+            <% if(typeof advertisement != 'undefined') { %>
+                <img src=<%= "/img/logo/" + advertisement.img %> title='<%= "/img/" + advertisement.img %>' alt='<%= "/img/" + advertisement.img %>' class="img-responsive">
+            <% } %>
+        <% }) %>
+        <a href="/sponsor" title="/sponsor" class="your_ad">
+            Din reklame her?
+        </a>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="contact_div col-xs-4 hidden">
+        <h2>Kontakt Informationer</h2>
+        <form class="contact_form" method="post" action="/admin/updateContactInfo" novalidate>
+            <% if(typeof contact_info != 'undefined') { %>
+                <% if(contact_info) { %>
+                    <div class="form-group">
+                        <label for="name">
+                            Navn: 
+                        </label>
+                        <% if(typeof contact_info_body != 'undefined') { %>
+                            <input class="form-control" type="text" id="name" name="name" value="<%= contact_info_body.name %>" required>
+                        <% } else { %>
+                            <input class="form-control" type="text" id="name" name="name" value="<%= contact_info[0].name %>" required>
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="adress">
+                            Adress: 
+                        </label>
+                        <% if(typeof contact_info_body != 'undefined') { %>
+                            <input class="form-control" type="text" id="adress" name="adress" value="<%= contact_info_body.adress %>" required>
+                        <% } else { %>
+                            <input class="form-control" type="text" id="adress" name="adress" value="<%= contact_info[0].adress %>" required>
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">
+                            By: 
+                        </label>
+                        <% if(typeof contact_info_body != 'undefined') { %>
+                            <input class="form-control" type="text" id="city" name="city" value="<%= contact_info_body.city %>" required>
+                        <% } else { %>
+                            <input class="form-control" type="text" id="city" name="city" value="<%= contact_info[0].city %>" required>
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">
+                            Land: 
+                        </label>
+                        <% if(typeof contact_info_body != 'undefined') { %>
+                            <input class="form-control" type="text" id="country" name="country" value="<%= contact_info_body.country %>" required>
+                        <% } else { %>
+                            <input class="form-control" type="text" id="country" name="country" value="<%= contact_info[0].country %>" required>
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">
+                            Telefon nummer: 
+                        </label>
+                        <% if(typeof contact_info_body != 'undefined') { %>
+                            <input class="form-control" type="number" id="phone" name="phone" value="<%= contact_info_body.phone %>" required>
+                        <% } else { %>
+                            <input class="form-control" type="number" id="phone" name="phone" value="<%= contact_info[0].phone %>" required>
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="fax">
+                            Telefon nummer: 
+                        </label>
+                        <% if(typeof contact_info_body != 'undefined') { %>
+                            <input class="form-control" type="number" id="fax" name="fax" value="<%= contact_info_body.fax %>" required>
+                        <% } else { %>
+                            <input class="form-control" type="number" id="fax" name="fax" value="<%= contact_info[0].fax %>" required>
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">
+                            E-mail adresse:
+                        </label>
+                        <% if(typeof contact_info_body != 'undefined') { %>
+                            <input class="form-control" type="text" id="email" name="email" value="<%= contact_info_body.email %>" required>
+                        <% } else { %>
+                            <input class="form-control" type="text" id="email" name="email" value="<%= contact_info[0].email %>" required>
+                        <% } %>
+                    </div>
+                <% } %>
+            <% } %>
+            <div class="form-group">
+                <button type="submit" class="admin_submit_btn">Opdater</button>
+            </div>
+        </form>
+    </div>

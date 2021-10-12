@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<% include ../partials/head %>
+    <body>
+        <% include ../partials/header %>
+        <div class="container">
+            <div class="row">
+                    <div class="col-xs-12">
+                        <% include ../partials/crumbs %>
+                    </div>
+                <div class="top_div"></div>
+                <div class="col-lg-12">
+                    <% include ../partials/locals_errors %>
+                    <% include ../partials/form_errors %>
+                </div>
+                <div class="col-xs-8">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h1 class="page_title">
+                                BOATS
+                            </h1>
+                        </div>
+                        <!-- all article, for each article build article -->
+                        <% if(typeof articles != 'undefined') { %>
+                            <% if(articles) { %>
+                                <% articles.forEach((article,index) => { %>
+                                    <% if(index <= 2) { %>
+                                        <div class="col-xs-12">
+                                            <h2>
+                                                <%= article.title %>
+                                            </h2>
+                                            <p>
+                                                <!-- written, comments and views -->
+                                                <span class="glyphicon glyphicon-time">
+                                                    <%= article.written %>
+                                                </span>
+                                                <span class="glyphicon glyphicon-comment">
+                                                    <%= article.comments.length %> Kommentarer
+                                                </span>
+                                                <span class="glyphicon glyphicon-eye-open">
+                                                    <%= article.viewCount %> Visninger
+                                                </span>
+                                            </p>
+                                            <p>
+                                                <span>
+                                                    <!-- build and shorten content -->
+                                                    <% let count = 0; %>
+                                                    <% if(typeof article.content.opening != 'undefined') { %>
+                                                        <% if(article.content.opening) { %>
+                                                            <% for(let i = 0; i < article.content.opening.length; i++) { %> 
+                                                                <% if(count + article.content.opening[i].length < 500) { %>
+                                                                    <p class="lineHeight">
+                                                                        <%= article.content.opening[i] %>
+                                                                    </p>
+                                                                <% } else { %>
+                                                                    <p class="lineHeight">
+                                                                            <%= article.content.opening[i].substring(0,500 - count) %>...
+                                                                    </p>
+                                                                    <% break; %>
+                                                                <% } %>
+                                                                <% count += article.content.opening[i].length; %>
+                                                            <% } %>
+                                                        <% } %>
+                                                    <% } %>
+                                                </span>
+                                            </p>
+                                            </p>
+                                            <p>
+                                                <!-- link to single article -->
+                                                <a href=<%= "/boats/getSingle/" + article._id %> title=<%= article._id %> class="article_read_more">
+                                                    Læs Mere
+                                                </a>
+                                            </p>
+                                        </div>
+                                    <% } %>
+                                <% }) %>
+                            <% } %>
+                            <!-- if single article -->
+                            <% } else if (typeof single_boat[0] != 'undefined') { %>
+                                <% if(single_boat) { %>
+                                    <div class="col-xs-12">
+                                        <h1 class="page_title">
+                                            <%= single_boat[0].title %>
+                                        </h1>
+                                        <p>
+                                            <!-- written, comments and views -->
+                                            <span class="glyphicon glyphicon-time openBold">
+                                                <%= single_boat[0].written %>
+                                            </span>
+                                            <span class="glyphicon glyphicon-comment openBold">
+                                                <%= single_boat[0].comments.length %> Kommentarer
+                                            </span>
+                                            <span class="glyphicon glyphicon-eye-open openBold">
+                                                <%= single_boat[0].viewCount %> Visninger
+                                            </span>
+                                        </p>
+                                        <!-- build content -->
+                                        <p>
+                                            <em>
+                                                <%= single_boat[0].content.opening[0] %>
+                                            </em>
+                                        </p>
+                                        <% single_boat[0].content.opening = single_boat[0].content.opening.slice(1) %>
+                                        <% single_boat[0].content.opening.forEach(entry => { %>
+                                            < class="lineHeight">
+                                                <%= entry %>
+                                            </>
+                                        <% }) %>
+                                        <!-- shorten content -->
+                                        <% if(typeof single_boat[0].content.paragraphs != 'undefined') { %>
+                                            <% if(single_boat[0].content.paragraphs.length >= 1) { %>
+                                                <% single_boat[0].content.paragraphs.forEach(paragraph => { %>
+                                                    <h2>
+                                                        <%= paragraph.subtitle %>
+                                                    </h2>
+                                                    <% paragraph.sections.forEach(section => { %>
+                                                        <p class="lineHeight">
+                                                            <%= section %>
+                                                        </p>
+                                                    <% })%>
+                                                <% }) %>
+                                            <% } %>
+                                        <% } %>
+                                        <!-- information about the author -->
+                                        <% if(typeof single_boat[0].author != 'undefined') { %>
+                                            <% if(single_boat[0].author) { %>
+                                                <div class="col-xs-12">
+                                                    <div class="row">
+                                                        <div class="col-xs-2">
+                                                            <img src="<%= '/img/editorial/' + single_boat[0].author.img %>" title="<%= '/img/editorial/' + single_boat[0].author.img %>" alt="<%= '/img/editorial/' + single_boat[0].author.img %>" class="img-responsive">
+                                                        </div>
+                                                        <div class="col-xs-10">
+                                                            <p>
+                                                                af 
+                                                                <span>
+                                                                    <%= single_boat[0].author.name + ', ' %>
+                                                                </span>
+                                                                <span>
+                                                                    <%= single_boat[0].author.role.display_name %>
+                                                                </span>
+                                                            </p>
+                                                            <p>
+                                                                <span class="lineHeight">
+                                                                        <%= single_boat[0].author.profile_text %>
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <% } %>
+                                        <% } %>
+                                        <!-- build comments -->
+                                        <% if(typeof single_boat[0].comments != 'undefined') { %>
+                                            <% if(single_boat[0].comments.length != 0) { %>
+                                                <h2 class="comment_heading">KOMMENTARER</h2>
+                                                <% single_boat[0].comments.forEach(comment => { %>
+                                                    <div class="col-xs-3">
+                                                        <span class="big_comment_icon glyphicon glyphicon-comment">
+                                                        </span>
+                                                    </div>
+                                                    <div class="comment col-xs-9">
+                                                        <h3>
+                                                            <%= comment.author %>
+                                                        </h3>
+                                                        <p>
+                                                            <span class="glyphicon glyphicon-time">
+                                                                <%= comment.written %>
+                                                            </span>
+                                                        </p>
+                                                        <p class="lineHeight">
+                                                            <%= comment.comment %>
+                                                        </p>
+                                                    </div>
+                                                <% }) %>
+                                            <% } %>
+                                        <% } %>
+                                        <!-- form for posting new comments -->
+                                        <form class="comment_form" method="post" action="<%= '/article/postComment/' + single_boat[0]._id %>" novalidate>
+                                            <h2>Din Kommentar</h2>
+                                            <div class="col-xs-6">
+                                                <div class="form-group">
+                                                    <p>
+                                                        <label for="name">
+                                                            <strong>Dit Navn</strong>
+                                                        </label>
+                                                    </p>
+                                                    <p>
+                                                        <input type="text" class="form-control" id="name" name="name" placeholder="Navn" required>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="form-group">
+                                                    <p>
+                                                        <label for="name">
+                                                            <strong>Din e-mailadresse</strong>
+                                                        </label>
+                                                    </p>
+                                                    <p>
+                                                        <input type="text" class="form-control" placeholder="E-mail adresse" id="name" name="email" required>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <p>
+                                                        <label for="comment">
+                                                            <strong>Din besked</strong>
+                                                        </label>
+                                                    </p>
+                                                    <p>
+                                                        <textarea type="text" class="form-control" placeholder="Besked" id="comment" name="comment" required></textarea>
+                                                    </p>
+                                                </div>
+                                                <div class="col-xs-12">
+                                                    <button type="submit">UDFØR</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                <% } %>
+                            <% } %>
+                            <!-- pagination handleing -->
+                            <div class="col-xs-12">
+                                <% if(typeof(articles) != 'undefined') { %>
+                                    <% if(articles) { %>
+                                        <% let page = 1; %>
+                                        <% while(pageCount > 0) { %>
+                                            <% if(pageParam == page) { %>
+                                                <a href=<%= "/boats" + "?page=" + page %> class="pagination_a active_pagination_a"><%= page %></a>
+                                            <% } else { %>
+                                                <a href=<%= "/boats" + "?page=" + page %> class="pagination_a"><%= page %></a>
+                                            <% } %>
+                                            <% page++; %>
+                                            <% pageCount--; %>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <% include ../partials/sidebar %>
+                </diV>
+            </div>
+        </div>
+        <!-- /container -->
+        <% include ../partials/footer %>
+    </body>
+</html>

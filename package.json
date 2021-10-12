@@ -1,0 +1,42 @@
+{
+  "name": "svendeproeve",
+  "version": "1.0.0",
+  "description": "svendeprøve",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app --ignore '/assets/logging/articles/*.json'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexanderFaisst/svendeproeve.git"
+  },
+  "author": "alexander_faisst",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "connect-flash": "*",
+    "connect-mongo": "^3.1.2",
+    "cookie-parser": "^1.4.1",
+    "crypto": "^1.0.1",
+    "ejs": "^2.6.1",
+    "express": "*",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "mongodb": "^3.3.3",
+    "mongoose": "^5.7.8",
+    "multer": "^1.3.1",
+    "nodemailer": "^4.6.7",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*",
+    "password-hash": "^1.2.2",
+    "sharp": "^0.23.2"
+  },
+  "bugs": {
+    "url": "https://github.com/AlexanderFaisst/svendeproeve/issues"
+  },
+  "homepage": "https://github.com/AlexanderFaisst/svendeproeve#readme"
+}

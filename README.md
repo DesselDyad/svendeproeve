@@ -1,2 +1,2 @@
 # svendeproeve
-my final apprenticeship test
+min svendeproeve

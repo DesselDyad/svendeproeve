@@ -1,0 +1,28 @@
+.article_read_more {
+    text-decoration: none;
+    padding: 10px;
+    color: rgba(119,119,119,1);
+    background-color: rgba(230,230,230,1);
+    font-weight: bold;
+}
+.article_read_more:hover {
+    text-decoration: none;
+    background-color: rgba(128,28,28,1);
+    color: rgba(240,240,240,1);
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment_form button {
+    padding: 10px;
+    color: rgba(119,119,119,1);
+    background-color: rgba(230,230,230,1);
+}
+
+.comment_form button:hover {
+    color: rgba(240,240,240,1);
+    background-color: rgba(128,28,28,1)
+}

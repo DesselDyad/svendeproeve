@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <% include ../partials/head %>
+<body>
+    <% include ../partials/header %>
+    <div class="container">
+        <div class="row outer_border">
+            <div class="col-xs-12">
+                    <!-- FOR DEVELOPMENT ONLY; USED TO MAKE THE ORIGINAL ADMIN USER - or if the only existing on is deleted for some reason -->
+                <h2 class="page-header">Register</h2>
+                <form method="post" action="/user/register">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" placeholder="Username" name="username"  >
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Password" name="password"  >
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+        
+            </div>
+        </div>
+        <% include ../partials/footer %>
+    </div>
+    <!-- /container -->
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<div class="editors_div col-xs-8 col-xs-offset-2 hidden">
+        <button class="admin_submit_btn" type="button" onclick="toggle_new_user()">Tilføj Bruger</button>
+        <div class="row">
+                <% if(typeof user_body != 'undefined') { %>
+                    <div class="col-xs-8 col-xs-offset-2 add_user_div">
+                <% } else { %>
+                    <div class="col-xs-8 col-xs-offset-2 add_user_div hidden">
+                <% } %>
+                <h2>Tilføj ny Bruger</h2>
+                <form class="add_user_form" method="post" action="/admin/user/addUser" enctype="multipart/form-data" novalidate>
+                    <div class="form-group">
+                        <label for="name">Navn</label>
+                        <% if(typeof user_body != 'undefined') { %>
+                            <input class="form-control" type="text" id="name" name="name" placeholder="Navn" value="<%= user_body.name %>" required>
+                        <% } else { %>
+                            <input class="form-control" type="text" id="name" name="name" placeholder="Navn" required>
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Brugernavn</label>
+                        <% if(typeof user_body != 'undefined') { %>
+                            <input class="form-control" type="text" id="username" name="username" placeholder="Brugernavn" value="<%= user_body.username %>" required>
+                        <% } else { %>
+                            <input class="form-control" type="text" id="username" name="username" placeholder="Brugernavn" required>
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail adresse</label>
+                        <% if(typeof user_body != 'undefined') { %>
+                            <input class="form-control" type="text" id="email" name="email" placeholder="E-mail adresse" value="<%= user_body.email %>" required>
+                        <% } else { %>
+                            <input class="form-control" type="text" id="email" name="email" placeholder="E-mail adresse" required>
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="text">Profiltekst</label>
+                        <% if(typeof user_body != 'undefined') { %>
+                            <input class="form-control" type="text" id="text" name="text" placeholder="Profiltekst" value="<%= user_body.text%>" required>
+                        <% } else { %>
+                            <input class="form-control" type="text" id="text" name="text" placeholder="Profiltekst" required>
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Vælg brugerrolle</label>
+                        <select class="form-control" id="role" name="role" required>
+                            <% roles.forEach(role => { %>
+                                <option value="<%= role._id %>">
+                                    <%= role.display_name %>
+                                </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <% menu_categories.forEach(category => { %>
+                            <P>
+                                <label for="category">Vælg kategori</label>
+                            </P>
+                            <label><%= category.editor_name %></label>
+                            <input type="checkbox" name="category" value="<%= category._id %>">
+                        <% }) %>
+                    </div>
+                    <div>
+                        <label>Upload Nyt Billede</label>
+                        <input type="file" name="userImage" id="userImage" >
+                        <img src="" id="preview" class="img-responsive hidden" width="150">
+                    </div>
+                    <button type="submit" class="admin_submit_btn">
+                        Tilføj
+                    </button>
+                </form>
+            </div>
+        </div>
+        <% if(typeof users != 'undefined') { %>
+            <% if(users) { %>
+                <h2>Redaktører</h2>
+                <table class="editor_tbl">
+                    <thead>
+                        <tr>
+                            <td>
+                                Operation
+                            </td>
+                            <td>
+                                Billede
+                            </td>
+                            <td>
+                                Navn
+                            </td>
+                            <td>
+                                Profiltekst
+                            </td>
+                            <td>
+                                E-mail adresse
+                            </td>
+                            <td>
+                                Kategori
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(user => { %>
+                            <% if(user.role.name == 'editor') { %>
+                                <tr>
+                                    <td>
+                                        <button type="button" class="admin_edit_btn" id="<%= user._id %>" onclick="edit_user(this.id)">
+                                            <span class="glyphicon glyphicon-wrench">
+                
+                                            </span>
+                                        </button>
+                                        <button type="button" class="admin_delete_btn" id="<%= user._id %>" onclick="delete_user(this.id)">
+                                            <span class="glyphicon glyphicon-remove">
+                                                
+                                            </span>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <img src="<%= '/img/editorial/' + user.img %>" title="<%= '/img/editorial/' + user.img %>" alt="<%= '/img/editorial/' + user.img %>" class="img-responsive" width="128">
+                                    </td>
+                                    <td>
+                                        <%= user.name %>
+                                    </td>
+                                    <td>
+                                        <% if(user.profile_text.length > 30) { %>
+                                            <%= user.profile_text.substring(0,30) + '...' %>
+                                        <% } else { %>
+                                            <%= user.profile_text %>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <%= user.email %>
+                                    </td>
+                                    <td>
+                                        <% if(user.category) { %>
+                                            <% user.category.forEach(category => { %>
+                                                <% console.log(category) %>
+                                                <p>
+                                                    <%= category.editor_name %>
+                                                </p>
+                                            <% }) %>
+                                        <% } %>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        <%})%>
+                    </tbody>
+                </table>
+            <% } %>
+        <% } %>
+</div>

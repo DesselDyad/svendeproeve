@@ -1,0 +1,50 @@
+<div class="container">
+    <footer>
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    <section>
+                        <h3>
+                            Adresse
+                        </h3>
+                        <p><strong><%= contact_info[0].name %></strong></p>
+                        <p><%= contact_info[0].adress %></p>
+                        <p><%= contact_info[0].city %></p>
+                        <p><%= contact_info[0].country %></p>
+                    </section>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                        <h3>
+                            Kontakt
+                        </h3>
+                        <p><%= contact_info[0].phone %></p>
+                        <p><%= contact_info[0].fax %></p>
+                        <p><%= contact_info[0].email %></p>
+                    </section>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <form class="newsletter_form" method="post" action="/newsletter/requestUserValidation">
+                        <h3>
+                            Nyhedsbrev
+                        </h3>
+                        <% if(typeof newsletter_body != 'undefined') { %>
+                            <% if(newsletter_body) { %>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" id="newsletter_email" name="email" placeholder="E-mailadresse" value="<%= newsletter_body.email%>">
+                                </div>
+                            <% } %>
+                        <% } else { %>
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="newsletter_email" name="email" placeholder="E-mailadresse">
+                            </div>
+                        <% } %>
+                        <div class="form-group">
+                            <button type="submit">Tilmeld</button>
+                            <button type="button" id="unsubscribe_btn">Frameld</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

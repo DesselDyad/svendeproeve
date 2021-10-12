@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<% include ../partials/head %>
+    <body>
+        <% include ../partials/header %>
+        <div class="container">
+            <div class="row">
+                    <div class="col-xs-12">
+                        <% include ../partials/crumbs %>
+                    </div>
+                <div class="top_div"></div>
+                <div class="col-lg-12">
+                    <% include ../partials/locals_errors %>
+                    <% include ../partials/form_errors %>
+                </div>
+                <div class="col-xs-8">
+                    <h1 class="page_title">Redaktionen</h1>
+                    <!-- editors actually holds the three different categories -->
+                    <% editors.forEach(editor => { %>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3><%= editor.category %></h3>
+                                <!-- categories.users holds the users for each category -->
+                                <% editor.users.forEach(user => { %>
+                                    <% if(user.role.name == 'editor') { %>
+                                        <div class="editor">
+                                            <div class="row">
+                                                <!-- build individual user -->
+                                                <div class="col-xs-4">
+                                                    <img src=<%= "/img/editorial/" + user.img %> alt="src=<%= user.img %>" title="src=<%= user.img %>" class="img-responsive">
+                                                </div>
+                                                <div class="col-xs-8">
+                                                    <div class="editor_description">
+                                                        <h4>
+                                                            <%= user.name %>
+                                                        </h4>
+                                                        <p>
+                                                            <span class="glyphicon glyphicon-envelope openBold">
+                                                                <%= user.email %>
+                                                            </span>
+                                                        </p>
+                                                        <p class="lineHeight">
+                                                            <%= user.profile_text %>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                <% }) %>
+                            </div>
+                        </div>
+                    <%}) %>
+                </div>
+                <div class="col-xs-4">
+                    <% include ../partials/sidebar %>
+                </diV>
+            </div>
+        </div>
+        <!-- /container -->
+        <% include ../partials/footer %>
+    </body>
+</html>

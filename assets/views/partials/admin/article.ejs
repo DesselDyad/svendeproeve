@@ -1,0 +1,222 @@
+<% if(user_role == 'admin') { %>
+    <div class="articles_div col-xs-10 col-xs-offset-1 hidden">
+<% } else { %>
+    <div class="articles_div col-xs-10 col-xs-offset-1">
+<% } %>
+    <% if(typeof articles != 'undefined') { %>
+        <% if(articles) { %>
+            <% let article_count = 0; %>
+            <% for(let i = 0; i < articles.length; i++) { %>
+                <% if(user_role == 'admin') { %>
+                    <% article_count++; %>
+                <% } else if(typeof user.category != 'undefined' ) { %>
+                    <% console.log(user.category.indexOf(articles[i].category._id) > -1) %>
+                    <% if(user.category.indexOf(articles[i].category._id) > -1) { %>
+                        <% article_count++; %>
+                    <% } %>
+                <% } %>
+            <% } %>
+            <h2>Artikler (<%= article_count %>)</h2>
+            <button type="button" class="admin_submit_btn article_add_btn">Tilføj Artikel</button>
+            <div class="add_article_div hidden">
+                <form class="add_article_form" method="post" action="/admin/article/addNew" novalidate>
+                    <h2>Tilføj ny Artikel</h2>
+                    <div class="form-group">
+                        <label for="title">Overskrift</label>
+                        <input class="form-control" type="text" id="title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Vælg Kategori: </label>
+                        <select class="form-control" id="category" name="category" class="admin_article_select">
+                            <% menu_categories.forEach(category => { %>
+                                <% if (typeof user.category != 'undefined' ) { %>
+                                    <% if(user.category.indexOf(category._id) > -1) { %>
+                                        <option value="<%= category._id%>">
+                                            <%= category.editor_name %>
+                                        </option>
+                                    <% } %> 
+                                <% } else if(user_role == 'admin') { %>
+                                    <option value="<%= category._id%>">
+                                        <%= category.editor_name %>
+                                    </option>
+                                <% } %>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="opening">Indledning</label>
+                        <textarea class="form-control opening" name="opening" required></textarea>
+                        <button type="button" class="admin_submit_btn add_opening_paragraph">Tilføj Afsnit til Indledning</button>
+                    </div>
+                    <button type="button" class="admin_submit_btn add_paragraph">Tilføj Paragraf</button>
+                    <button type="submit" class="admin_submit_btn">Upload Artikel</button>
+                </form>
+            </div>
+            <div>
+                <% if(menu_categories != 'undefined') { %>
+                    <% if(menu_categories) { %>
+                        <label>Sorter Artikler efter: Kategorier</label>
+                        <select class="admin_article_select admin_sorting_category_select">
+                            <% menu_categories.forEach(category => { %>
+                                <% if(user_role == 'admin') { %>
+                                    <option value="<%= category._id%>">
+                                        <%= category.editor_name %>
+                                    </option>
+                                <% } else if(typeof user.category != 'undefined') {  %>
+                                    <% user.category.forEach(_category => { %>
+                                        <% if(_category.equals(category._id)) { %>
+                                            <% console.log('hej med dig')%>
+                                            <option value="<%= category._id%>">
+                                                <%= category.editor_name %>
+                                            </option>
+                                        <% } %>
+                                    <% }) %>
+                                <% } %>
+                            <% }) %>
+                        </select>
+                    <% } %>
+                <% } %>
+                <% if(users != 'undefined') { %>
+                    <% if(users) { %>
+                        <label>Sorter Artikler efter: Redaktører</label>
+                        <select class="admin_article_select admin_sorting_editor_select">
+                            <% users.forEach(_user => { %>
+                                <% if(_user.role.name == 'editor') { %>
+                                    <% if(user_role == 'admin') { %>
+                                        <option value="<%= _user._id%>">
+                                            <%= _user.name %>
+                                        </option>
+                                        <% } else if(typeof user.category != 'undefined') { %>
+                                            <% user.category.forEach(category => { %>
+                                                <% console.log(_user.category)%>
+                                                <% for(let i = 0; i < _user.category.length; i++) { %>
+                                                    <% if(_user.category[i]._id.equals(category)) { %>
+                                                        <% console.log('hej med dig')%>
+                                                        <option value="<%= _user._id%>">
+                                                            <%= _user.name %>
+                                                        </option>
+                                                    <% } %>
+                                                <% } %>
+                                            <% }) %>
+                                        <% } %>
+                                <% } %>
+                            <% }) %>
+                        </select>
+                    <% } %>
+                <% } %>
+            </div>
+            <table class="admin_articles_tbl">
+                <thead>
+                    <tr>
+                        <td>
+                            Operation
+                        </td>
+                        <td>
+                            Overskrift
+                        </td>
+                        <td>
+                            Redaktør
+                        </td>
+                        <td>
+                            Kategori
+                        </td>
+                        <td>
+                            Dato skrevet
+                        </td>
+                        <td>
+                            Antal kommentarer
+                        </td>
+                        <td>
+                            Antal Visninger
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let i = 0; i < articles.length; i++) { %>
+                        <% if(user_role == 'admin') { %>
+                            <tr>
+                                <td>
+                                    <button type="button" class="admin_edit_btn" id="<%= articles[i]._id %>" onclick="edit_article(this.id)">
+                                        <span class="glyphicon glyphicon-wrench">
+            
+                                        </span>
+                                    </button>
+                                    <button type="button" class="admin_delete_btn" id="<%= articles[i]._id %>" onclick="delete_article(this.id)">
+                                        <span class="glyphicon glyphicon-remove">
+                                            
+                                        </span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <a href="<%= '/' + articles[i].category.query_name + '/getSingle/' + articles[i]._id %>" title="<%= '/' + articles[i].category.query_name + '/getSingle/' + articles[i]._id %>">
+                                        <%= articles[i].title %>
+                                    </a>
+                                </td>
+                                <td>
+                                    <% if(typeof articles[i].author != 'undefined') { %>
+                                        <% if(articles[i].author) { %>
+                                            <%= articles[i].author.name %>
+                                        <% } %>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <%= articles[i].category.editor_name %>
+                                </td>
+                                <td>
+                                    <%= articles[i].written %>
+                                </td>
+                                <td>
+                                    <%= articles[i].comments.length %>
+                                </td>
+                                <td>
+                                    <%= articles[i].viewCount %>
+                                </td>
+                            </tr>
+                        <% } else if(typeof user.category != 'undefined' ) { %>
+                            <% if(user.category.indexOf(articles[i].category._id) > -1) { %>
+                                <tr>
+                                    <td>
+                                        <button type="button" class="admin_edit_btn" id="<%= articles[i]._id %>" onclick="edit_article(this.id)">
+                                            <span class="glyphicon glyphicon-wrench">
+                
+                                            </span>
+                                        </button>
+                                        <button type="button" class="admin_delete_btn" id="<%= articles[i]._id %>" onclick="delete_article(this.id)">
+                                            <span class="glyphicon glyphicon-remove">
+                                                
+                                            </span>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="<%= '/' + articles[i].category.query_name + '/getSingle/' + articles[i]._id %>" title="<%= '/' + articles[i].category.query_name + '/getSingle/' + articles[i]._id %>">
+                                            <%= articles[i].title %>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <% if(typeof articles[i].author != 'undefined') { %>
+                                            <% if(articles[i].author) { %>
+                                                <%= articles[i].author.name %>
+                                            <% } %>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <%= articles[i].category.editor_name %>
+                                    </td>
+                                    <td>
+                                        <%= articles[i].written %>
+                                    </td>
+                                    <td>
+                                        <%= articles[i].comments.length %>
+                                    </td>
+                                    <td>
+                                        <%= articles[i].viewCount %>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        <% } %>
+    <% } %>
+</div>

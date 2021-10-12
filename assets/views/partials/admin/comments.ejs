@@ -1,0 +1,91 @@
+<div class="comments_div col-xs-10 col-xs-offset-1 hidden">
+        <% if(typeof articles != 'undefined') { %>
+            <% if(articles) { %>
+                <% let comment_count = 0; %>
+
+                <% for(let i = 0; i < articles.length; i++) { %>
+                    <% if(user_role == 'admin') { %>
+                        <% comment_count = comment_count + articles[i].comments.length ; %>
+                    <% } else if(typeof user.category != 'undefined' ) { %>
+                        <% if(user.category.indexOf(articles[i].category._id) > -1) { %>
+                            <% comment_count = comment_count + articles[i].comments.length ; %>
+                        <% } %>
+                    <% } %>
+                <% } %>
+                <h2>Kommentarer (<%= comment_count %>) </h2>
+                    <% if(articles != 'undefined') { %>
+                        <% if(articles) { %>
+                            <label>Sorter kommentarer efter: Artikel</label>
+                            <select class="admin_comment_sort_select admin_article_select">
+                                <% articles.forEach(article => { %>
+                                    <option value="<%= article._id %>">
+                                        <%= article.title %>
+                                    </option>
+                                <% }) %>
+                            </select>
+                        <% } %>
+                    <% } %>
+                <table class="admin_comments_tbl">
+                    <thead>
+                        <tr>
+                            <td>
+                                Operation
+                            </td>
+                            <td>
+                                Comment
+                            </td>
+                            <td>
+                                Author
+                            </td>
+                            <td>
+                                E-mail adress (sender)
+                            </td>
+                            <td>
+                                Written
+                            </td>
+                            <td>
+                                Tilhørende Artikel
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% articles.forEach(article => { %>
+                            <% article.comments.forEach(comment => { %>
+                                <% if(user.category.indexOf(article.category._id) > -1 || user_role == 'admin') { %>
+                                    <tr>
+                                        <td>
+                                            <button type="button" class="admin_edit_btn" id="<%= comment._id %>" onclick="edit_comment(this.id)">
+                                                <span class="glyphicon glyphicon-wrench">
+                    
+                                                </span>
+                                            </button>
+                                            <button type="button" class="admin_delete_btn" id="<%= comment._id %>" onclick="delete_comment(this.id)">
+                                                <span class="glyphicon glyphicon-remove">
+                                                    
+                                                </span>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <%= comment.comment %>
+                                        </td>
+                                        <td>
+                                            <%= comment.author %>
+                                        </td>
+                                        <td>
+                                            <%= comment.email %>
+                                        </td>
+                                        <td>
+                                            <%= comment.written %>
+                                        </td>
+                                        <td>
+                                            <%= article.author.name + ', ' + article.title %>
+                                        </td>
+                                    </tr>
+                                <% } %>
+                            <% }) %>
+                        <%})%>
+                    </tbody>
+                </table>
+            <% } %>
+        <% } %>
+    </div>

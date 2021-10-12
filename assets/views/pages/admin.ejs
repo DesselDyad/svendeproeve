@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<% include ../partials/head.ejs %>
+
+<body>
+    <div class="overlay">
+        <% include ../partials/header.ejs %>
+    </div>
+    <div class="container">
+            <div class="row this_row">
+                    <div class="col-xs-12">
+                        <% include ../partials/crumbs %>
+                    </div>
+                    <div id="main" class="admin_main col-xs-12">
+                        <div class="row this_row">
+                            <div class="col-xs-12">
+                                <!-- div used for any kind of editing -->
+                            <div class="row">
+                                <div id="edit_div" class="col-xs-12 hidden">
+                                    
+                                </div>
+                            </div>
+                            <div class="overview_h1 col-xs-12">
+                                <a href="/admin" title="admin">
+                                    <h1>Admin Panel Overblik</h1>
+                                </a>
+                                <a href="/user/logout" class="logout_btn" title="logout">Log Ud fra Admin Panel</a>
+                            </div>
+                            <!-- include partials for showing user feedback including the one which is used by client side -->
+                            <div class="col-xs-10 col-xs-offset-1 top_div"></div>
+                            <div class="col-xs-12">
+                                <% include ../partials/locals_errors.ejs %>
+                                <% include ../partials/form_errors.ejs %>
+                            </div>
+                            <!-- depending on which kind of user is logged in, show different buttons to toggle entities -->
+                            <% if(user_role == 'admin') { %>
+                                <div class="row">
+                                    <div class="col-xs-10 col-xs-offset-1 btn_div">
+                                        <button type="button" id="categories_btn" data-container="category_div" class="admin_btn btn_clicked">Categories</button>
+                                        <button type="button" id="articles_btn" data-container="articles_div" class="admin_btn">Artikler</button>
+                                        <button type="button" id="comments_btn" data-container="comments_div" class="admin_btn">Kommentarer</button>
+                                        <button type="button" id="editors_btn" data-container="editors_div" class="admin_btn">Editors</button>
+                                        <button type="button" id="contact_info_btn" data-container="contact_div" class="admin_btn">Kontakt Informationer</button>
+                                        <button type="button" id="sponsors_btn" data-container="sponsors_div" class="admin_btn">Sponsorer</button>
+                                    </div>
+                                </div>
+                            <% } else { %>
+                                <div class="row">
+                                    <div class="col-xs-10 col-xs-offset-1 btn_div">
+                                        <button type="button" id="articles_btn" data-container="articles_div" class="admin_btn btn_clicked">Artikler</button>
+                                        <button type="button" id="comments_btn" data-container="comments_div" class="admin_btn">Kommentarer</button>
+                                    </div>
+                                </div>
+                            <% } %>
+                            <br>
+                            <hr id="my_hr">
+                            <!-- depending on which kind of user is logged in, include different partials -->
+                            <% if(user_role == 'admin') { %>
+                                <div class="row">
+                                    <div class="col-xs-12 admin_overview_container">
+                                        <% include ../partials/admin/categories %>
+                                        <% include ../partials/admin/article %>
+                                        <% include ../partials/admin/comments %>
+                                        <% include ../partials/admin/editorial %>
+                                        <% include ../partials/admin/contact %>
+                                        <% include ../partials/admin/sponsors %>
+                                    </div>
+                                </div>
+                            <% } else { %>
+                                <div class="row">
+                                    <div class="col-xs-12 admin_overview_container">
+                                        <% include ../partials/admin/article %>
+                                        <% include ../partials/admin/comments %>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+            </div>
+            <% include ../partials/footer.ejs %>
+        </div>
+    </div>
+</body>
+
+</html>

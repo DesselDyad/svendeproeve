@@ -1,0 +1,22 @@
+<div class="category_div col-xs-6">
+    <h2>Kategorier - bestem rækkefølge i navigationsbaren: </h2>
+    <form class="category_form" method="post" action="/admin/updateCategories" novalidate>
+        <% if(typeof menu_categories != 'undefined') { %>
+            <% if(menu_categories) { %>
+                <% menu_categories.forEach(category => { %>
+                    <div class="formm-group">
+                        <label for="<%= category.query_name%>"><%= category.menu_name%></label>
+                        <input class="form-control" type="number" id="<%= category.query_name%>" name="<%= category.query_name%>" placeholder="<%= category.query_name + 'Menu Rækkefølge'%>" value="<%= category.menu_order%>" required>
+                    </div>
+                    <!-- just testing around for now -->
+                    <% if(typeof categories_body != 'undefined') { %>
+                        <% console.log('categories_bodycategories_bodycategories_bodycategories_body',categories_body) %>
+                    <% } %>
+                <%})%>
+            <% } %>
+        <% } %>
+        <div class="form-group">
+            <button type="submit" class="admin_submit_btn">Opdater</button>
+        </div>
+    </form>
+</div>

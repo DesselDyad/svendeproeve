@@ -1,0 +1,168 @@
+<div class="sponsors_div col-xs-12 hidden">
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="row">
+                <div class="col-xs-12 update_ad_description_div ">
+                    <form class="update_ad_description_form" method="post" action="/admin/ad/updateDescription/<%= adDescription[0]._id %>" novalidate>
+                        <div class="form-group">
+                            <label for="text">Beskrivelse til hvordan man får sin reklame vist</label>
+                            <% if(typeof description_body != 'undefined') { %>
+                                <textarea class="form-control" id="text" name="text" required><%= description_body.text %></textarea>
+                            <% } else { %>
+                                <textarea class="form-control" id="text" name="text" required><%= adDescription[0].text %></textarea>
+                            <% } %>
+                            <button type="submit" class="admin_submit_btn">Opdater Beskrivelse</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <h2>Priser Per Reklame</h2>
+            <button type="button" class="admin_submit_btn add_price_per_view_btn">Tilføj ny pris per Visning</button>
+            <div class="row">
+                <div class="col-xs-12 add_price_per_view_div hidden">
+                    <form class="add_price_per_view_form" method="post" action="/admin/ad/addSinglePrice" novalidate>
+                        <h2>Tilføj ny Pris per Visning</h2>
+                        <div class="form-group">
+                            <label for="views">Antal visninger: </label>
+                            <% if(typeof price_body != 'undefined') { %>
+                                <input class="form-control" type="number" id="views" name="views" value="<%= price_body.views %>" required>
+                            <% } else { %>
+                                <input class="form-control" type="number" id="views" name="views" required>
+                            <% } %>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Pris per visning</label>
+                            <% if(typeof price_body != 'undefined') { %>
+                                <input class="form-control" type="number" id="price" name="price" value="<%= price_body.price %>" required>
+                            <% } else { %>
+                                <input class="form-control" type="number" id="price" name="price" required>
+                            <% } %>
+                        </div>
+                        <button type="submit" class="admin_submit_btn">
+                            Tilføj
+                        </button>
+                    </form>
+                </div>
+            </div>
+                <% if(typeof ad_prices != 'undefined') { %>
+                    <% if(ad_prices) { %>
+                        <table class="ad_tbl">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        Operation
+                                    </td>
+                                    <td>
+                                        Visninger
+                                    </td>
+                                    <td>
+                                        Pris per Visning
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <% ad_prices.forEach(price => { %>
+                                <tr>
+                                    <td>
+                                        <button type="button" class="admin_edit_btn" id="<%= price._id %>" onclick="edit_price(this.id)">
+                                            <span class="glyphicon glyphicon-wrench">
+    
+                                            </span>
+                                        </button>
+                                        <button type="button" class="admin_delete_btn" id="<%= price._id %>" onclick="delete_price(this.id)">
+                                            <span class="glyphicon glyphicon-remove">
+                                                
+                                            </span>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <%= price.views %>
+                                    </td>
+                                    <td>
+                                        <%= price.price_per_view %> kr.
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                <% } %>
+            <% } %>
+        </div>
+        <div class="col-xs-5 col-xs-offset-1">
+            <h2>Reklamer & Tilhørende Kategorier</h2>
+            <button type="button" class="admin_submit_btn add_ad_btn">Tilføj ny Reklame</button>
+            <div class="row">
+                <div class="col-xs-12 add_ad_div hidden">
+                    <form class="add_ad_form" method="post" action="/admin/ad/addSingle" enctype="multipart/form-data" novalidate>
+                        <h2>Tilføj ny Reklame</h2>
+                        <div class="form-group">
+                            <label for="category">Vælg Kategori</label>
+                            <select class="form-control" id="category" name="category">
+                                <% menu_categories.forEach(category => { %>
+                                    <option value="<%= category._id %>">
+                                        <%= category.editor_name %>
+                                    </option>
+                                <% })%>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="text">Reklame tekst: </label>
+                            <textarea class="form-control" id="text" name="text" required></textarea>
+                        </div>
+                        <div>
+                            <label>Upload Nyt Billede</label>
+                            <input type="file" name="adImage" id="adImage" required>
+                            <img src="" id="ad_preview" class="img-responsive hidden" width="150">
+                        </div>
+                        <button type="submit" class="admin_submit_btn">
+                            Tilføj
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <% if(typeof ads != 'undefined') { %>
+                <% if(ads) { %>
+                    <table class="ad_tbl">
+                        <thead>
+                            <tr>
+                                <td>
+                                    Operation
+                                </td>
+                                <td>
+                                    Billede
+                                </td>
+                                <td>
+                                    Kategoru
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% ads.forEach(ad => { %>
+                                <tr>
+                                    <td>
+                                        <button type="button" class="admin_edit_btn" id="<%= ad._id %>" onclick="edit_ad(this.id)">
+                                            <span class="glyphicon glyphicon-wrench">
+                                                
+                                            </span>
+                                        </button>
+                                        <button type="button" class="admin_delete_btn" id="<%= ad._id %>" onclick="delete_ad(this.id)">
+                                            <span class="glyphicon glyphicon-remove">
+                                                
+                                            </span>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <img src="<%= '/img/logo/' + ad.img %>" title="<%= '/img/logo/' + ad.img %>" alt="<%= '/img/logo/' + ad.img %>" class="img-responsive">
+                                    </td>
+                                    <td>
+                                        <%= ad.category.editor_name %>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
+</div>

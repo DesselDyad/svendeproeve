@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<% include ../partials/head %>
+    <body>
+        <% include ../partials/header %>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <% include ../partials/crumbs %>
+                </div>
+                <div class="top_div"></div>
+                <div class="col-lg-12">
+                    <% include ../partials/locals_errors %>
+                    <% include ../partials/form_errors %>
+                </div>
+                <div class="col-xs-8 sponsor_top">
+                    <h1 class="page_title">
+                        SPONSOR
+                    </h1>
+                    <hr>
+                    <p class="lineHeight">
+                        <!-- how one get one's ad shown -->
+                        <%= description[0].text %>
+                    </p>
+                    <table class="ad_prices_tbl">
+                        <thead>
+                            <tr>
+                                <td>
+                                    Visninger
+                                </td>
+                                <td>
+                                    Pris per Visning
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- prices table/list -->
+                            <% prices.forEach(price => { %>
+                                <tr>
+                                    <td>
+                                        <%= price.views %>
+                                    </td>
+                                    <td>
+                                        <%= price.price_per_view %> kr.
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xs-4">
+                    <% include ../partials/sidebar %>
+                </diV>
+            </div>
+        </div>
+        <!-- /container -->
+        <% include ../partials/footer %>
+    </body>
+</html>

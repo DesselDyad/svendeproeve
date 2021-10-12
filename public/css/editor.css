@@ -1,0 +1,9 @@
+.editor_description {
+    display: flex;
+    flex-direction: column;
+}
+
+.editor img {
+    width: 100%;
+    padding: 20px;
+}

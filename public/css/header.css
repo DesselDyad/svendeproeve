@@ -1,0 +1,107 @@
+@font-face {
+    font-family: oswaldBold;
+    src: url(../Fonts/Oswald/Oswald-Bold.woff2);
+}
+@font-face {
+    font-family: oswaldRegular;
+    src: url(../Fonts/Oswald/Oswald-Bold.woff2);
+}
+@font-face {
+    font-family: openSansBold;
+    src: url(../Fonts/Open_Sans/OpenSans-Bold.woff2);
+}
+@font-face {
+    font-family: openSansRegular;
+    src: url(../Fonts/Open_Sans/OpenSans-Regular.woff2);
+}
+
+h1, h2, h3 {
+    font-family: oswaldBold!important;
+}
+
+h1{
+    font-size: 36px!important;   
+}
+
+h2{
+    font-size: 24px!important;   
+}
+
+h3 {
+    font-size: 18px!important;   
+}
+
+button {
+    font-family: oswaldRegular!important;
+}
+
+.lineHeight {
+    font-size: 14px;
+    line-height: 25px;
+}
+
+.glyphicon-time,
+.glyphicon-comment,
+.glyphicon-eye-open {
+    font-size: 13px;
+}
+
+body{
+    background-color: rgba(210,210,210,1);
+    font-family: oopenSansRegular!important;   
+}
+
+.openBold, label {
+    font-family: openSansBold!important;
+}
+
+.glyphicon-tag {
+    text-decoration: none;
+    color: black;
+}
+
+.container {
+    background-color: rgba(255,255,255,1);
+}
+
+.navbar_div {
+    background-color: rgba(53,53,53,1);
+    border-bottom: 4px solid rgba(255,192,0,1);
+}
+
+.navbar_div a {
+    text-decoration: none;
+    color: rgba(240,240,240,1);
+    font-weight: bold;
+}
+
+.page_logo {
+    padding: 30px 0 30px 0;
+}
+
+.navbar_div a:hover {
+    color: rgba(128,28,28,1);
+    background-color: rgba(53,53,53,1);
+}
+
+.page_title {
+    width: 100%;
+    text-align: left;
+    border-bottom: 5px solid black;
+}
+
+.hidden {
+    display: none;
+}
+
+.navbar_div {
+    padding-left: 0px;
+}
+
+#header_list a:hover {
+    background-color: rgba(53,53,53,1);
+}
+
+.menu_item_clicked {
+    background-color: rgba(255,192,0,1);
+}

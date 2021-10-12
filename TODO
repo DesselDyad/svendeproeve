@@ -1,0 +1,25 @@
+	
+	TODO: 
+
+	* put articles in db yet again						 - (OBLIGATORISK) - DONE
+	* create logs for articles						 - (OBLIGATORISK) - DONE
+	* redaktører skal have mulighed for at have mere end én kategori	 - (OBLIGATORISK) - DONE DONE MF
+	* viewCount implementation						 - (OBLIGATORISK) - DONE
+	* begræns artikler i sidebar'en til side-specifikke artikler		 - (OBLIGATORISK) - DONE
+	* style navigations bar item således at det aktive fremhæves		 - (OBLIGATORISK) - DONE
+	* sorter kommentarer i enkelte artikler after dato (ældste først)	 - (OBLIGATORISK) - DONE
+	* lav CRUD over reklame-beskrivelse (hvordan man får den vist)		 - (OBLIGATORISK) - DONE
+	* finish styling breadcrumbs, indicate active page etc			 - (OBLIGATORISK) - DONE
+	* admin table sort							 - (OPTIONAL)     - DONE
+	* implementer node mailer						 - (OPTIONAL)     - DONE
+	* attempt to fix whitespaces in text shortenings			 - (OPTIONAL)     - DONE
+	* send contact messages to an actual email				 - (OBLIGATORISK) - REMAINING
+
+	* req_update & req_add bodies						 - (OPTIONAL)     - REMAINING
+	* test CRUDs								 - (OPTIONAL)     - REMAINING
+	* create functionality for dynamically adding subtitles and sections to  - (OPTIONAL)     - DONE(P. much)
+								    ADD ARTICLE  
+
+
+
+CRUD test

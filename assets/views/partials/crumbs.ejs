@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-xs-12">
+        <% console.log(crumbs) %>
+        <% if(title != "Forside") { %>
+            <ul id="crumbs">
+                <li>
+                    <a href="/" title="/">
+                        Forside
+                    </a>
+                </li>
+                <% crumbs.forEach(crumb => { %>
+                    <% if(crumb.name == title && crumb.name != "Forside") { %>
+                        <li>
+                            <a href=<%=crumb.url %>>
+                                <%= '/ ' + crumb.name %>
+                            </a>
+                        </li>
+                    <% } %>
+                <% })%>
+                <% if(typeof single_bike != 'undefined') { %>
+                    <% if(single_bike[0]) { %>
+                        <li>
+                            <a href=<%= "/bikes/getSingle/" + single_bike[0]._id %> title='<%= "/bikes/getSingle/" + single_bike[0]._id %>'>
+                                <%= '/' + single_bike[0].title %>
+                            </a>
+                        </li>
+                    <% } %>
+                <% } else if(typeof single_boat != 'undefined') { %>
+                    <% if(single_boat[0]) { %>
+                        <li>
+                            <a href=<%= "/boats/getSingle/" + single_boat[0]._id %> title='<%= "/boats/getSingle/" + single_boat[0]._id %>'>
+                                <%= '/' + single_boat[0].title %>
+                            </a>
+                        </li>
+                    <% } %>
+                <% } else if(typeof single_car != 'undefined') { %>
+                    <% if(single_car[0]) { %>
+                        <li>
+                            <a href=<%= "/cars/getSingle/" + single_car[0]._id %> title='<%= "/cars/getSingle/" + single_car[0]._id %>'>
+                                <%= '/' + single_car[0].title %>
+                            </a>
+                        </li>
+                    <% } %>
+                <% } %>
+            </ul>
+        <% } %>
+    </div>
+</div>
